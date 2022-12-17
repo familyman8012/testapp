@@ -1,0 +1,21 @@
+version: 1.0
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    commands:
+      - npm install -g next
+  pre_build:
+    commands:
+      - npm ci
+  build:
+    commands:
+      - next build
+  post_build:
+    commands:
+      - next export
+      - zip -r app.zip out
+artifacts:
+  files:
+    - app.zip
